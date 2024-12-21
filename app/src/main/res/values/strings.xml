@@ -2,6 +2,10 @@
     <string name="app_name">GithubReposAppDEPIRound2</string>
 
     // repoList Screen
+    <string name="reponame_placeholder">RepoName</string>
+    <string name="stars_count_placeholder">2000</string>
+    <string name="repoowner_placeholder">RepoOwner</string>
+    <string name="repo_description_placeholder">Repo Description Repo Description Repo Description Repo Description Repo Description Repo Description</string>
 
     // details screen
     <string name="details_app_bar_title">Details</string>
@@ -28,8 +32,5 @@
     <string name="news_not_found_message">Can\'t find news for that subject.</string>
     <string name="unknown_exception_message">We are working on this issue</string>
     <string name="back_arrow">back arrow</string>
-    <string name="reponame_placeholder">RepoName</string>
-    <string name="stars_count_placeholder">2000</string>
-    <string name="repoowner_placeholder">RepoOwner</string>
-    <string name="repo_description_placeholder">Repo Description Repo Description Repo Description Repo Description Repo Description Repo Description</string>
+
 </resources>
