@@ -3,7 +3,7 @@ package com.example.githubreposappdepiround2.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.example.githubreposappdepiround2.navigation.AppNavHost
+import com.example.githubreposappdepiround2.RepoItem2
 import com.example.githubreposappdepiround2.ui.theme.GithubRepoAppDEPIRound2Theme
 
 class MainActivity : ComponentActivity() {
@@ -11,7 +11,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             GithubRepoAppDEPIRound2Theme {
-                AppNavHost()
+                RepoItem2()
             }
         }
     }

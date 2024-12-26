@@ -1,4 +1,4 @@
-package com.example.githubreposappdepiround2
+package com.example.githubreposappdepiround2.ui.screens.repo_list
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -11,23 +11,27 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.githubreposappdepiround2.R
+import com.example.githubreposappdepiround2.ui.screens.repo_list.preview.fakeRepoList
 import com.example.githubreposappdepiround2.ui.theme.GithubRepoAppDEPIRound2Theme
+import com.example.githubreposappdepiround2.ui.theme.Yellow
 
 @Composable
 fun RepoItem(
+    githubRepoUiModel: GithubRepoUiModel,
     modifier: Modifier = Modifier,
+    onItemClick: () -> Unit
 ) {
     Row(
         modifier
@@ -35,10 +39,11 @@ fun RepoItem(
             .padding(horizontal = 8.dp)
             .padding(top = 8.dp)
             .background(
-                color = Color.White,
-                shape = RoundedCornerShape(12.dp)
+                color = MaterialTheme.colorScheme.surface,
+                shape = MaterialTheme.shapes.medium
             )
             .clickable {
+               onItemClick()
             }
     ) {
         Image(
@@ -59,29 +64,34 @@ fun RepoItem(
             ) {
                 Text(
                     modifier = Modifier.weight(1f),
-                    text = stringResource(R.string.reponame_placeholder),
+                    text = githubRepoUiModel.name,
+                    style = MaterialTheme.typography.titleMedium
                 )
                 Text(
                     modifier = Modifier.padding(end = 8.dp),
-                    text = stringResource(R.string.stars_count_placeholder),
+                    text = githubRepoUiModel.stars.toString(),
+                    style = MaterialTheme.typography.bodyMedium
                 )
                 Image(
                     modifier = Modifier
                         .size(30.dp)
                         .padding(end = 8.dp),
-                    painter = painterResource(R.drawable.ic_launcher_background),
+                    painter = painterResource(R.drawable.ic_star),
                     contentDescription = null,
+                    colorFilter = ColorFilter.tint(Yellow)
                 )
             }
             Spacer(Modifier.height(8.dp))
             Text(
-                text = stringResource(R.string.repoowner_placeholder),
+                text = githubRepoUiModel.owner,
+                style = MaterialTheme.typography.bodyMedium
             )
             Spacer(Modifier.height(12.dp))
             Text(
-                text = stringResource(R.string.repo_description_placeholder),
+                text = githubRepoUiModel.description,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
+                style = MaterialTheme.typography.bodyMedium
             )
         }
     }
@@ -94,6 +104,6 @@ fun RepoItem(
 @Composable
 private fun PreviewRepoItem() {
     GithubRepoAppDEPIRound2Theme {
-        RepoItem()
+       RepoItem(githubRepoUiModel = fakeRepoList.first(),onItemClick = {})
     }
 }
