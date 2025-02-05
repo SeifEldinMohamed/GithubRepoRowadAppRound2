@@ -1,4 +1,4 @@
-package com.example.githubreposappdepiround2.ui.screens.repo_list
+package com.example.githubreposappdepiround2.ui.screens.repo_list.model
 
 data class GithubRepoUiModel(
     val id: Int,

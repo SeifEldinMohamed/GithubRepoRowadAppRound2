@@ -5,7 +5,6 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.githubreposappdepiround2.ui.screens.repo_list.RepoItem
 import com.example.githubreposappdepiround2.ui.screens.repo_list.RepoListScreen
 
 @Composable

@@ -1,6 +1,6 @@
 package com.example.githubreposappdepiround2.ui.screens.repo_list.preview
 
-import com.example.githubreposappdepiround2.ui.screens.repo_list.GithubRepoUiModel
+import com.example.githubreposappdepiround2.ui.screens.repo_list.model.GithubRepoUiModel
 
 val fakeRepoList = listOf<GithubRepoUiModel>(
     GithubRepoUiModel(

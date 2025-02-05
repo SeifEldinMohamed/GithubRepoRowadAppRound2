@@ -1,6 +1,8 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -59,6 +61,45 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    // coil
+    implementation(libs.coil.compose)
     // navigation
     implementation(libs.androidx.navigation.compose)
+
+
+
+    testImplementation(libs.mockk)
+    testImplementation(libs.turbine)
+
+    implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.lifecycle.runtime.compose)
+    implementation(libs.lifecycle.viewmodel.ktx)
+
+    implementation(libs.hilt)
+    ksp(libs.hilt.compiler)
+    implementation(libs.hilt.navigation.compose)
+
+    implementation(libs.coroutines)
+    implementation(libs.retrofit)
+    implementation(libs.okhttp3)
+    implementation(libs.gson)
+    implementation(libs.gson.converter)
+
+    implementation(libs.room)
+    ksp(libs.room.compiler)
+
+    implementation(libs.datastore)
+    implementation(libs.lottie.compose)
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.internal.KaptGenerateStubsTask> {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }

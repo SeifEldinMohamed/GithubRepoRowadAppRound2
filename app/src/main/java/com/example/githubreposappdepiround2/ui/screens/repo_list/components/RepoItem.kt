@@ -1,4 +1,4 @@
-package com.example.githubreposappdepiround2.ui.screens.repo_list
+package com.example.githubreposappdepiround2.ui.screens.repo_list.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -23,6 +23,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.githubreposappdepiround2.R
+import com.example.githubreposappdepiround2.ui.screens.repo_list.model.GithubRepoUiModel
 import com.example.githubreposappdepiround2.ui.screens.repo_list.preview.fakeRepoList
 import com.example.githubreposappdepiround2.ui.theme.GithubRepoAppDEPIRound2Theme
 import com.example.githubreposappdepiround2.ui.theme.Yellow
