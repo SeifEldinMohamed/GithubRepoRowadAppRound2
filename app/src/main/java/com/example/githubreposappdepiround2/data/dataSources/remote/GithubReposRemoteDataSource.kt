@@ -3,12 +3,10 @@ package com.example.githubreposappdepiround2.data.dataSources.remote
 import android.util.Log
 import com.example.githubreposappdepiround2.data.dataSources.remote.retrofit.api.GithubApi
 import com.example.githubreposappdepiround2.data.dataSources.remote.retrofit.model.GithubReposDataModel
-import com.example.githubreposappdepiround2.di.NetworkModule
+import javax.inject.Inject
 
-class GithubReposRemoteDataSource(
-    private val githubApi: GithubApi = NetworkModule.provideGithubApi(
-        NetworkModule.provideRetrofitInstance()
-    )
+class GithubReposRemoteDataSource @Inject constructor(
+    private val githubApi: GithubApi
 ) {
     fun fetchGithubRepos(): GithubReposDataModel{
         return try {

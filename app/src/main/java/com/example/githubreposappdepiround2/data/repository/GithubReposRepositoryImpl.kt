@@ -5,8 +5,9 @@ import com.example.githubreposappdepiround2.data.dataSources.remote.GithubReposR
 import com.example.githubreposappdepiround2.data.mapper.toGithubRepoDomainModel
 import com.example.githubreposappdepiround2.domain.model.GithubRepoDomainModel
 import com.example.githubreposappdepiround2.domain.repository.GithubReposRepository
+import javax.inject.Inject
 
-class GithubReposRepositoryImpl(
+class GithubReposRepositoryImpl @Inject constructor(
     private val githubReposRemoteDataSource: GithubReposRemoteDataSource,
     private val githubReposLocalDataSource: GithubReposLocalDataSource
 ): GithubReposRepository {

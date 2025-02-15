@@ -10,6 +10,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.key
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.githubreposappdepiround2.ui.screens.repo_list.components.RepoItem
 import com.example.githubreposappdepiround2.ui.screens.repo_list.preview.fakeRepoList
@@ -20,7 +21,8 @@ import com.example.githubreposappdepiround2.ui.theme.GithubRepoAppDEPIRound2Them
 fun RepoListScreen(
     onItemClick: () -> Unit
 ) {
-    val repoListViewModel: RepoListViewModel = viewModel()
+    val repoListViewModel: RepoListViewModel = hiltViewModel()
+
     LaunchedEffect(Unit) {
         repoListViewModel.requestGithubRepoList()
     }
