@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.githubreposappdepiround2.R
 import com.example.githubreposappdepiround2.ui.theme.GithubRepoAppDEPIRound2Theme
 
-@ExperimentalMaterial3Api
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppBar(
     @StringRes title: Int,

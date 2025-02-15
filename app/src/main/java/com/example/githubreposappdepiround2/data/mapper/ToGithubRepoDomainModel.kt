@@ -1,17 +1,16 @@
 package com.example.githubreposappdepiround2.data.mapper
 
+import com.example.githubreposappdepiround2.data.dataSources.local.room.entities.GithubRepoEntity
 import com.example.githubreposappdepiround2.data.dataSources.remote.retrofit.model.GithubReposDataModel
 import com.example.githubreposappdepiround2.domain.model.GithubRepoDomainModel
 
-fun GithubReposDataModel.toGithubRepoDomainModel(): List<GithubRepoDomainModel> {
-    return this.items.map { item ->
-        GithubRepoDomainModel(
-            id = item.id,
-            name = item.name,
-            avatar = item.owner.avatar_url,
-            description = item.description,
-            stars = item.stargazers_count,
-            owner = item.owner.login
-        )
-    }
+fun GithubRepoEntity.toGithubRepoDomainModel(): GithubRepoDomainModel {
+    return GithubRepoDomainModel(
+        id = this.id,
+        name = this.name,
+        avatar = this.avatar,
+        description = this.description,
+        stars = this.stars,
+        owner = this.owner
+    )
 }

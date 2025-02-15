@@ -18,10 +18,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberAsyncImagePainter
+import coil.request.ImageRequest
 import com.example.githubreposappdepiround2.R
 import com.example.githubreposappdepiround2.ui.screens.repo_list.model.GithubRepoUiModel
 import com.example.githubreposappdepiround2.ui.screens.repo_list.preview.fakeRepoList
@@ -32,7 +35,7 @@ import com.example.githubreposappdepiround2.ui.theme.Yellow
 fun RepoItem(
     githubRepoUiModel: GithubRepoUiModel,
     modifier: Modifier = Modifier,
-    onItemClick: () -> Unit
+    onItemClick: (owner: String, name: String) -> Unit,
 ) {
     Row(
         modifier
@@ -44,7 +47,7 @@ fun RepoItem(
                 shape = MaterialTheme.shapes.medium
             )
             .clickable {
-               onItemClick()
+                onItemClick(githubRepoUiModel.owner, githubRepoUiModel.name)
             }
     ) {
         Image(
@@ -52,7 +55,12 @@ fun RepoItem(
                 .size(50.dp)
                 .padding(top = 8.dp, start = 8.dp)
                 .clip(shape = CircleShape),
-            painter = painterResource(R.drawable.ic_launcher_background),
+            painter = rememberAsyncImagePainter(
+                ImageRequest.Builder(LocalContext.current)
+                    .data(githubRepoUiModel.avatar)
+                    .crossfade(1000)
+                    .build()
+            ),
             contentDescription = null
         )
 
@@ -105,6 +113,6 @@ fun RepoItem(
 @Composable
 private fun PreviewRepoItem() {
     GithubRepoAppDEPIRound2Theme {
-       RepoItem(githubRepoUiModel = fakeRepoList.first(),onItemClick = {})
+        RepoItem(githubRepoUiModel = fakeRepoList.first(), onItemClick = { _, _ -> })
     }
 }

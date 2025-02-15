@@ -8,7 +8,7 @@ class FetchGithubRepoListUseCase @Inject constructor(
     private val githubReposRepository: GithubReposRepository
 ) {
 
-   operator fun invoke(): List<GithubRepoDomainModel> {
+   suspend operator fun invoke(): List<GithubRepoDomainModel> {
         return githubReposRepository.fetchGithubRepos()
     }
 }

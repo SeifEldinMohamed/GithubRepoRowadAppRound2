@@ -7,5 +7,5 @@ import retrofit2.http.GET
 
 interface GithubApi {
     @GET(GITHUB_REPOS_ENDPOINT)
-    fun fetchGithubRepos():Response<GithubReposDataModel>
+    suspend fun fetchGithubRepos():Response<GithubReposDataModel>
 }

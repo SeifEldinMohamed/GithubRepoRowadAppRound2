@@ -1,4 +1,4 @@
-package com.example.githubreposapp.presentation.screens.repo_details_screen
+package com.example.githubreposappdepiround2.ui.screens.repo_details_screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -49,7 +49,6 @@ import com.example.githubreposappdepiround2.ui.screens.repo_details_screen.viewm
 import com.example.githubreposappdepiround2.ui.theme.GithubRepoAppDEPIRound2Theme
 import kotlinx.coroutines.launch
 
-@ExperimentalMaterial3Api
 @Composable
 fun RepoDetailsScreen(
     modifier: Modifier = Modifier,
@@ -57,13 +56,14 @@ fun RepoDetailsScreen(
     name: String,
     onClickBack: () -> Unit,
     onClickViewIssues: () -> Unit,
-    onShowIssuesClicked: () -> Unit
+    onShowIssuesClicked: () -> Unit,
 ) {
     val repoDetailsViewModel: RepoDetailsViewModel = hiltViewModel()
     LaunchedEffect(key1 = true) {
         repoDetailsViewModel.requestGithubRepoList(owner, name)
     }
     val repoDetailsUiState by repoDetailsViewModel.repoDetailsStatFlow.collectAsStateWithLifecycle()
+
     val coroutineScope = rememberCoroutineScope()
     Scaffold(modifier = modifier.fillMaxSize(),
         topBar = {
@@ -99,11 +99,11 @@ fun RepoDetailsScreen(
             is RepoDetailsUiState.Error -> {
                 ErrorSection(
                     onRefreshButtonClicked = {
-                        coroutineScope.launch{
+                        coroutineScope.launch {
                             repoDetailsViewModel.requestGithubRepoList(owner, name)
                         }
                     },
-                    customErrorExceptionUiModel = CustomExceptionUiModel.Network
+                    customErrorExceptionUiModel = (repoDetailsUiState as RepoDetailsUiState.Error).customErrorExceptionUiModel
                 )
             }
 
@@ -115,7 +115,7 @@ fun RepoDetailsScreen(
 fun DetailsContent(
     innerPadding: PaddingValues,
     repoDetailsUiModel: RepoDetailsUiModel,
-    onShowIssuesClicked: () -> Unit
+    onShowIssuesClicked: () -> Unit,
 ) {
     Column(
         modifier = Modifier

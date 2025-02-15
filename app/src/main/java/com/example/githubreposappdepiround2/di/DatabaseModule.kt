@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.githubreposappdepiround2.data.Constants.Companion.DATABASE_NAME
+import com.example.githubreposappdepiround2.data.dataSources.local.dataStore.DataStorePreference
 import com.example.githubreposappdepiround2.data.dataSources.local.room.GithubReposDatabase
 import com.example.githubreposappdepiround2.data.dataSources.local.room.dao.GithubReposDao
 import dagger.Module
@@ -15,7 +16,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class DatabaseModule {
+object DatabaseModule {
 
     @Provides
     @Singleton
@@ -35,6 +36,14 @@ class DatabaseModule {
         githubReposDatabase: GithubReposDatabase,
     ): GithubReposDao {
         return githubReposDatabase.getGithubReposDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideStatStorePreference(
+        @ApplicationContext context: Context
+    ): DataStorePreference {
+        return DataStorePreference(context)
     }
 
 }
